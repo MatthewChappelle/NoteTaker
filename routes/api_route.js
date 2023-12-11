@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { readFromFile, readAndAppend } = require("../helpers/fsUtils");
+const { readAndAppend, deleteNote } = require("../helpers/fsUtils");
 const uuid = require("../helpers/uuid");
 
 // GET Route for retrieving all notes
@@ -8,8 +8,8 @@ router.get("/", (req, res) => {
     console.log(data);
 });
 
-// POST Route for new notes
-router.post("/", (req, res) => {
+// GET Route for adding new note
+router.post('/notes', (req, res) => {
     console.log(req.body);
 
     const { title, text } = req.body;
@@ -30,5 +30,15 @@ router.post("/", (req, res) => {
         res.error("Error");
     }
 });
+
+// DELETE Route for deleting notes in database based on id
+router.delete('/notes/:id', (req, res) => {
+    console.log("router");
+    let id = req.params.id;
+    deleteNote(id);
+    res.send('Deleted, Note ${req.params.id}');
+});
+
+
 
 module.exports = router;

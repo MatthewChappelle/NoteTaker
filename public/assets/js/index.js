@@ -89,8 +89,8 @@ const handleNoteDelete = (e) => {
   e.stopPropagation();
 
   const note = e.target;
-  const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
 
+  const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
   if (activeNote.id === noteId) {
     activeNote = {};
   }
@@ -105,6 +105,7 @@ const handleNoteDelete = (e) => {
 const handleNoteView = (e) => {
   e.preventDefault();
   activeNote = JSON.parse(e.target.parentElement.getAttribute('data-note'));
+  console.log(activeNote)
   renderActiveNote();
 };
 
@@ -186,6 +187,15 @@ const getAndRenderNotes = () => getNotes().then(renderNoteList);
 
 if (window.location.pathname === '/notes') {
   saveNoteBtn.addEventListener('click', handleNoteSave);
+  document.getElementById('text-area').addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+      if (noteTitle.value.trim() !== "" && noteText.value.trim() !== "") {
+        handleNoteSave();
+      } else {
+        console.log("Both fields must be filled out");
+      }
+    }
+  });
   newNoteBtn.addEventListener('click', handleNewNoteView);
   clearBtn.addEventListener('click', renderActiveNote);
   noteForm.addEventListener('input', handleRenderBtns);
