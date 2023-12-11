@@ -187,6 +187,7 @@ const getAndRenderNotes = () => getNotes().then(renderNoteList);
 
 if (window.location.pathname === '/notes') {
   saveNoteBtn.addEventListener('click', handleNoteSave);
+  //added submit functionality on "enter" keypress
   document.getElementById('text-area').addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
       if (noteTitle.value.trim() !== "" && noteText.value.trim() !== "") {

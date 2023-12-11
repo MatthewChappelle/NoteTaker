@@ -1,8 +1,6 @@
 const express = require('express');
 const path = require('path');
 const apiroute = require('./routes/api_route');
-const { readFromFile, readAndAppend } = require("./helpers/fsUtils");
-const uuid = require("./helpers/uuid");
 
 //set up port
 const PORT = process.env.PORT || 3001;
