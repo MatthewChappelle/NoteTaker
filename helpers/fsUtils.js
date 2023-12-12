@@ -5,7 +5,7 @@ const DB_PATH = "./db/db.json";
 //set up write function
 const writeToFile = (content) =>
     fs.writeFile(DB_PATH, JSON.stringify(content, null, 4), (err) =>
-        err ? console.error(err) : console.info('\nSent to ${destination}'));
+        err ? console.error(err) : console.info('Wrote to File'));
 
 //set up read function for readAndAppend and deleteNote
 const readFile = () => {
@@ -18,7 +18,6 @@ const readAndAppend = (content) => {
     let noteInfo = readFile();
     noteInfo.push(content);
     writeToFile(noteInfo);
-    console.log('read and appended');
 };
 
 //added delete functionality
@@ -31,6 +30,7 @@ const deleteNote = (id) => {
         };
     };
     writeToFile(noteInfo);
+    console.log(`Deleted, Note ${id}`);
 };
 
 //export functions
