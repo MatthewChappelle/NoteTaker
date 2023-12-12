@@ -26,7 +26,8 @@ This application is covered under the None license. For more information, see []
 Feel free to reach out with any recommendations or concerns!
 
 ## Tests
-app for taking notes
+Check out the deployed application here!
+[note-taker](https://pacific-taiga-62196-e0e3340972e0.herokuapp.com/notes)
 
 <p>AS A small business owner<br>
 I WANT to be able to write and save notes<br>
