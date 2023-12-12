@@ -1,17 +1,14 @@
 const router = require("express").Router();
-const { readFromFile, readAndAppend } = require("../helpers/fsUtils");
+const { readAndAppend, deleteNote } = require("../helpers/fsUtils");
 const uuid = require("../helpers/uuid");
 
 // GET Route for retrieving all notes
 router.get("/", (req, res) => {
     readFromFile("./db/db.json").then((data) => res.json(JSON.parse(data)));
-    console.log(data);
 });
 
-// POST Route for new notes
-router.post("/", (req, res) => {
-    console.log(req.body);
-
+// GET Route for adding new note
+router.post('/notes', (req, res) => {
     const { title, text } = req.body;
 
     // If all the required properties are present
@@ -29,6 +26,13 @@ router.post("/", (req, res) => {
     } else {
         res.error("Error");
     }
+});
+
+// DELETE Route for deleting notes in database based on id
+router.delete('/notes/:id', (req, res) => {
+    let id = req.params.id;
+    deleteNote(id);
+    res.send('Deleted, Note ${req.params.id}');
 });
 
 module.exports = router;
